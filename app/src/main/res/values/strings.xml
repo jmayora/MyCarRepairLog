@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MyCarRepairLog</string>
+    <string name="btnAdd">+</string>
+    <string name="btnAddCar">Add Car</string>
+    <string name="txtAuto">Auto</string>
+    <string name="editTextKilometers">Kilometros</string>
+    <string name="editTextDate">Fecha</string>
+    <string name="txtTitulo">Registro de Mantenimiento</string>
+    <string name="editTextTrabajo">Descripcion del trabajo</string>
+    <string name="menu_add">Add Car</string>
+    <string name="menu_settings">Settings</string>
+</resources>
