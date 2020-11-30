@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Add Car selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(view.getContext(), AddRecordActivity.class);
+                Intent intent = new Intent(view.getContext(), AddCarActivity.class);
                 startActivity(intent);
             }
 

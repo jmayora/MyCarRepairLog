@@ -9,4 +9,10 @@
     <string name="editTextTrabajo">Descripcion del trabajo</string>
     <string name="menu_add">Add Car</string>
     <string name="menu_settings">Settings</string>
+    <string name="editTxtCarManufacturer">Car Manufacturer</string>
+    <string name="editTxtCarModel">Car Model</string>
+    <string name="editTxtCarYear">Car Year</string>
+    <string name="editTxtCarKilometers">Initial Kilometers</string>
+    <string name="listRecords">Records List</string>
+    <string name="btnAddRecord">Add Record</string>
 </resources>
