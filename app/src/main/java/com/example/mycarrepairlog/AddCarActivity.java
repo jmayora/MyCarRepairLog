@@ -38,5 +38,6 @@ public class AddCarActivity extends AppCompatActivity {
 
         Log.d("Auto Info: ", auto.toString());
 
+        MyDBHelper myDBHelper = new MyDBHelper(this);
     }
 }
