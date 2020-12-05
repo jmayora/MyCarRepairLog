@@ -1,6 +1,6 @@
 package com.example.mycarrepairlog;
 
-public class Auto {
+public class AutoModel {
 
     private int ID;
     private String brand;
@@ -8,14 +8,14 @@ public class Auto {
     private int year;
     private int kilometers;
 
-    public Auto(String brand, String model, int year, int kilometers) {
+    public AutoModel(String brand, String model, int year, int kilometers) {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.kilometers = kilometers;
     }
 
-    public Auto() {
+    public AutoModel() {
     }
 
     public int getID() {

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddCarActivity extends AppCompatActivity {
 
@@ -34,10 +35,17 @@ public class AddCarActivity extends AppCompatActivity {
         int carYear = Integer.parseInt(editTxtCarYear.getText().toString());
         int carKilometers = Integer.parseInt(editTxtCarKilometers.getText().toString());
 
-        Auto auto = new Auto(carBrand, carModel, carYear, carKilometers);
+        AutoModel auto = new AutoModel(carBrand, carModel, carYear, carKilometers);
 
         Log.d("Auto Info: ", auto.toString());
 
         MyDBHelper myDBHelper = new MyDBHelper(this);
+        boolean success = myDBHelper.addOne(auto);
+        if (success) {
+            Toast.makeText(getApplicationContext(), "Inserted " + carBrand, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Insert failed", Toast.LENGTH_LONG).show();
+        }
+
     }
 }
