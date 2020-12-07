@@ -17,25 +17,39 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
+    ListView myCarsListView;
+    Button btnAddCar;
+    Button btnListCars;
+    MyDBHelper db;
+    List<AutoModel> allAutosList;
+    ArrayList<String> myCarsList = new ArrayList<>();
+    ArrayAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView myCarsListView = findViewById(R.id.listViewCars);
-        Button btnAddCar = findViewById(R.id.btnAddCar);
+        myCarsListView = findViewById(R.id.listViewCars);
+        btnAddCar = findViewById(R.id.btnAddCar);
+        btnListCars = findViewById(R.id.btnListCars);
 
-        final ArrayList<String> myCarList = new ArrayList<String>();
-        myCarList.add("Hyundai Tucson");
+//        final ArrayList<String> myCarList = new ArrayList<String>();
+/*        myCarList.add("Hyundai Tucson");
         myCarList.add("Nissan Qashqai");
         myCarList.add("Mazda 2");
         myCarList.add("Kia Sportage");
+*/
+        db = new MyDBHelper(this);
+        allAutosList = db.getAllAutos();
+        for (int i = 0; i < allAutosList.size(); i++)
+            myCarsList.add(allAutosList.get(i).getBrand() + " " + allAutosList.get(i).getModel() + " " + allAutosList.get(i).getYear());
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myCarList);
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myCarsList);
 
         myCarsListView.setAdapter(arrayAdapter);
 
@@ -49,17 +63,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnAddCar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Add Car selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(view.getContext(), AddCarActivity.class);
-                startActivity(intent);
-            }
-
-        });
     }
+
+    public void addCar(View view){
+        Toast.makeText(getApplicationContext(), "Add Car selected", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getApplicationContext(), AddCarActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();

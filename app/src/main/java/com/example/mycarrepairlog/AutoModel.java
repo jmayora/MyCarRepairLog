@@ -15,7 +15,17 @@ public class AutoModel {
         this.kilometers = kilometers;
     }
 
+
+
     public AutoModel() {
+    }
+
+    public AutoModel(int ID, String brand, String model, int year, int kilometers) {
+        this.ID = ID;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.kilometers = kilometers;
     }
 
     public int getID() {

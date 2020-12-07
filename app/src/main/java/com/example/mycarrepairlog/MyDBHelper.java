@@ -2,10 +2,14 @@ package com.example.mycarrepairlog;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyDBHelper extends SQLiteOpenHelper {
 
@@ -55,5 +59,35 @@ public class MyDBHelper extends SQLiteOpenHelper {
         }
 
 
+    }
+
+    public List<AutoModel> getAllAutos() {
+        List<AutoModel> allAutosList = new ArrayList<>();
+
+        String selectAllAutos = "SELECT * FROM " + AUTO_TABLE;
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c = db.rawQuery(selectAllAutos,null);
+
+        if(c.moveToFirst()){
+            do {
+                int ID = c.getInt(0);
+                String autoBrand = c.getString(1);
+                String autoModel = c.getString(2);
+                int autoYear = c.getInt(3);
+                int autoKilometers = c.getInt(4);
+
+                AutoModel auto = new AutoModel(ID, autoBrand, autoModel, autoYear, autoKilometers);
+                allAutosList.add(auto);
+
+            } while (c.moveToNext());
+        } else {
+
+        }
+        c.close();
+        db.close();
+        return allAutosList;
+        
     }
 }
