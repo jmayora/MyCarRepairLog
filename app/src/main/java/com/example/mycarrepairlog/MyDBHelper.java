@@ -61,6 +61,13 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean deleteOne(int autoID){
+
+
+        return true;
+    }
+
+
     public List<AutoModel> getAllAutos() {
         List<AutoModel> allAutosList = new ArrayList<>();
 

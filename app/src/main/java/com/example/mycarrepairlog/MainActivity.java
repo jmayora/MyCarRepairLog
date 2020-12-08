@@ -24,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
     ListView myCarsListView;
     Button btnAddCar;
     Button btnListCars;
-    MyDBHelper db;
+    MyDBHelper db = new MyDBHelper(this);
     List<AutoModel> allAutosList;
     ArrayList<String> myCarsList = new ArrayList<>();
     ArrayAdapter arrayAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         myCarsListView = findViewById(R.id.listViewCars);
         btnAddCar = findViewById(R.id.btnAddCar);
-        btnListCars = findViewById(R.id.btnListCars);
+
 
 //        final ArrayList<String> myCarList = new ArrayList<String>();
 /*        myCarList.add("Hyundai Tucson");
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         myCarList.add("Mazda 2");
         myCarList.add("Kia Sportage");
 */
-        db = new MyDBHelper(this);
+
         allAutosList = db.getAllAutos();
         for (int i = 0; i < allAutosList.size(); i++)
             myCarsList.add(allAutosList.get(i).getBrand() + " " + allAutosList.get(i).getModel() + " " + allAutosList.get(i).getYear());
@@ -57,12 +58,36 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Toast.makeText(getApplicationContext(), "Hello " + myCarsListView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+                String selection = myCarsListView.getItemAtPosition(i).toString();
+                String[] arrOfStr = selection.split(" ");
+                String autoBrand = arrOfStr[0];
+                String autoModel = arrOfStr[1];
+                String autoYear = arrOfStr[2];
+
+                Toast.makeText(getApplicationContext(), "Hello " + autoBrand + " , " + autoModel + " , " + autoYear, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(view.getContext(), RecordListActivity.class);
                 startActivity(intent);
             }
         });
 
+        myCarsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "Hello " + myCarsListView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        allAutosList = db.getAllAutos();
+        myCarsList.clear();
+        for (int i = 0; i < allAutosList.size(); i++)
+            myCarsList.add(allAutosList.get(i).getBrand() + " " + allAutosList.get(i).getModel() + " " + allAutosList.get(i).getYear());
+        arrayAdapter.notifyDataSetChanged();
     }
 
     public void addCar(View view){
