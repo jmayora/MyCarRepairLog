@@ -15,7 +15,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     private String[] mDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView;
+        private final TextView txtViewBrand, txtViewModel, txtViewYear;
 
         public ViewHolder(View v) {
             super(v);
@@ -26,12 +26,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
-            textView = (TextView) v.findViewById(R.id.textView);
+            txtViewBrand = (TextView) v.findViewById(R.id.txtViewBrand);
+            txtViewModel = (TextView) v.findViewById(R.id.txtViewModel);
+            txtViewYear  = (TextView) v.findViewById(R.id.txtViewYear);
         }
 
-        public TextView getTextView() {
-            return textView;
+        public TextView getTxtViewBrand() {
+            return txtViewBrand;
         }
+        public TextView getTxtViewModel() { return txtViewModel; }
+        public TextView getTxtViewYear() { return txtViewYear; }
     }
 
     public CustomAdapter(String[] dataSet) {
@@ -57,7 +61,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getTextView().setText(mDataSet[position]);
+        viewHolder.getTxtViewBrand().setText("Brand");
+        viewHolder.getTxtViewModel().setText("Model");
+        viewHolder.getTxtViewYear().setText("Year");
     }
 
     @Override
