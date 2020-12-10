@@ -30,7 +30,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    String createTableStatement = "CREATE TABLE " + AUTO_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BRAND + " TEXT, " + COLUMN_MODEL + " TEXT, " + COLUMN_YEAR + " INT, " + COLUMN_KILOMETERS + " FLOAT )";
+    String createTableStatement = "CREATE TABLE " + AUTO_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BRAND + " TEXT, " + COLUMN_MODEL + " TEXT, " + COLUMN_YEAR + " INT)";
 
     db.execSQL(createTableStatement);
     }
@@ -48,7 +48,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_BRAND, autoModel.getBrand());
         cv.put(COLUMN_MODEL, autoModel.getModel());
         cv.put(COLUMN_YEAR, autoModel.getYear());
-        cv.put(COLUMN_KILOMETERS, autoModel.getKilometers());
 
         long result = db.insert(AUTO_TABLE, null, cv);
 
@@ -83,9 +82,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 String autoBrand = c.getString(1);
                 String autoModel = c.getString(2);
                 int autoYear = c.getInt(3);
-                int autoKilometers = c.getInt(4);
 
-                AutoModel auto = new AutoModel(ID, autoBrand, autoModel, autoYear, autoKilometers);
+                AutoModel auto = new AutoModel(ID, autoBrand, autoModel, autoYear);
                 allAutosList.add(auto);
 
             } while (c.moveToNext());

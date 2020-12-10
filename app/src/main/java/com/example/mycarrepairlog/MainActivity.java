@@ -23,7 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     ListView myCarsListView;
     Button btnAddCar;
-    Button btnListCars;
+
     MyDBHelper db = new MyDBHelper(this);
     List<AutoModel> allAutosList;
     ArrayList<String> myCarsList = new ArrayList<>();

@@ -35,7 +35,7 @@ public class AddCarActivity extends AppCompatActivity {
         int carYear = Integer.parseInt(editTxtCarYear.getText().toString());
         int carKilometers = Integer.parseInt(editTxtCarKilometers.getText().toString());
 
-        AutoModel auto = new AutoModel(carBrand, carModel, carYear, carKilometers);
+        AutoModel auto = new AutoModel(carBrand, carModel, carYear);
 
         Log.d("Auto Info: ", auto.toString());
 

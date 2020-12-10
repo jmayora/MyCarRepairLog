@@ -9,13 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
-    private String[] mDataSet;
+    private List<AutoModel> allAutosList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView txtViewBrand, txtViewModel, txtViewYear;
+        private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear;
 
         public ViewHolder(View v) {
             super(v);
@@ -26,11 +28,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
+            txtViewRecordID = (TextView) v.findViewById(R.id.txtViewRecordID);
             txtViewBrand = (TextView) v.findViewById(R.id.txtViewBrand);
             txtViewModel = (TextView) v.findViewById(R.id.txtViewModel);
             txtViewYear  = (TextView) v.findViewById(R.id.txtViewYear);
         }
 
+        public TextView getTxtViewRecordID() { return txtViewRecordID; }
         public TextView getTxtViewBrand() {
             return txtViewBrand;
         }
@@ -38,8 +42,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView getTxtViewYear() { return txtViewYear; }
     }
 
-    public CustomAdapter(String[] dataSet) {
-        mDataSet = dataSet;
+    public CustomAdapter(List<AutoModel> allAutosList) {
+
+        this.allAutosList = allAutosList;
     }
 
 
@@ -61,13 +66,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
-        viewHolder.getTxtViewBrand().setText("Brand");
-        viewHolder.getTxtViewModel().setText("Model");
-        viewHolder.getTxtViewYear().setText("Year");
+        viewHolder.getTxtViewRecordID().setText(String.valueOf(allAutosList.get(position).getID()));
+        viewHolder.getTxtViewBrand().setText(allAutosList.get(position).getBrand());
+        viewHolder.getTxtViewModel().setText(allAutosList.get(position).getModel());
+        viewHolder.getTxtViewYear().setText(String.valueOf(allAutosList.get(position).getYear()));
     }
 
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        return allAutosList.size();
     }
 }

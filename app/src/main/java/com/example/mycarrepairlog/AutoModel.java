@@ -6,13 +6,13 @@ public class AutoModel {
     private String brand;
     private String model;
     private int year;
-    private int kilometers;
+    //private int kilometers; move to maintenance records
 
-    public AutoModel(String brand, String model, int year, int kilometers) {
+    public AutoModel(String brand, String model, int year) {
         this.brand = brand;
         this.model = model;
         this.year = year;
-        this.kilometers = kilometers;
+       // this.kilometers = kilometers;
     }
 
 
@@ -20,12 +20,12 @@ public class AutoModel {
     public AutoModel() {
     }
 
-    public AutoModel(int ID, String brand, String model, int year, int kilometers) {
+    public AutoModel(int ID, String brand, String model, int year) {
         this.ID = ID;
         this.brand = brand;
         this.model = model;
         this.year = year;
-        this.kilometers = kilometers;
+        //this.kilometers = kilometers;
     }
 
     public int getID() {
@@ -60,14 +60,15 @@ public class AutoModel {
         this.year = year;
     }
 
-    public int getKilometers() {
+/*  public int getKilometers() {
         return kilometers;
     }
+*/
 
-    public void setKilometers(int kilometers) {
+/*    public void setKilometers(int kilometers) {
         this.kilometers = kilometers;
     }
-
+*/
     @Override
     public String toString() {
         return "Auto{" +
@@ -75,7 +76,6 @@ public class AutoModel {
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", year=" + year +
-                ", kilometers=" + kilometers +
                 '}';
     }
 }

@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCarRepairLog">
-        <activity android:name=".AddCarActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".AddCarActivity" />
         <activity android:name=".RecordListActivity" />
         <activity android:name=".AddRecordActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
