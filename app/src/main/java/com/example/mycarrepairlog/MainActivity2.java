@@ -31,7 +31,7 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         myCarsListView = (RecyclerView) findViewById(R.id.rvCarList);
-        btnAdd2 = findViewById(R.id.btnAdd2);
+
 
 
         layoutManager = new LinearLayoutManager(this);
