@@ -52,8 +52,10 @@ public class MyDBHelper extends SQLiteOpenHelper {
         long result = db.insert(AUTO_TABLE, null, cv);
 
         if (result == -1) {
+            db.close();
             return false;
         } else {
+            db.close();
             return true;
         }
 

@@ -38,14 +38,6 @@ public class MainActivity extends AppCompatActivity {
         myCarsListView = findViewById(R.id.listViewCars);
         btnAddCar = findViewById(R.id.btnAddCar);
 
-
-//        final ArrayList<String> myCarList = new ArrayList<String>();
-/*        myCarList.add("Hyundai Tucson");
-        myCarList.add("Nissan Qashqai");
-        myCarList.add("Mazda 2");
-        myCarList.add("Kia Sportage");
-*/
-
         allAutosList = db.getAllAutos();
         for (int i = 0; i < allAutosList.size(); i++)
             myCarsList.add(allAutosList.get(i).getBrand() + " " + allAutosList.get(i).getModel() + " " + allAutosList.get(i).getYear());
@@ -67,14 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Hello " + autoBrand + " , " + autoModel + " , " + autoYear, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(view.getContext(), RecordListActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        myCarsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), "Hello " + myCarsListView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
-                return false;
             }
         });
 
