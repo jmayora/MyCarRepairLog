@@ -2,6 +2,9 @@ package com.example.mycarrepairlog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,54 +16,40 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity {
-    ListView myCarsListView;
-    Button btnAddCar;
+    Button btnAdd2;
 
     MyDBHelper db = new MyDBHelper(this);
     List<AutoModel> allAutosList;
     ArrayList<String> myCarsList = new ArrayList<>();
     ArrayAdapter arrayAdapter;
+    RecyclerView myCarsListView;
+    LinearLayoutManager layoutManager;
+    CustomAdapter myAdapter;
+    int autosCount;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myCarsListView = findViewById(R.id.listViewCars);
-        btnAddCar = findViewById(R.id.btnAddCar);
+        myCarsListView = (RecyclerView) findViewById(R.id.rvCarList);
+
+        layoutManager = new LinearLayoutManager(this);
+        myCarsListView.setLayoutManager(layoutManager);
 
         allAutosList = db.getAllAutos();
-        for (int i = 0; i < allAutosList.size(); i++)
-            myCarsList.add(allAutosList.get(i).getBrand() + " " + allAutosList.get(i).getModel() + " " + allAutosList.get(i).getYear());
+        autosCount = allAutosList.size();
 
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myCarsList);
-
-        myCarsListView.setAdapter(arrayAdapter);
-
-        myCarsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                String selection = myCarsListView.getItemAtPosition(i).toString();
-                String[] arrOfStr = selection.split(" ");
-                String autoBrand = arrOfStr[0];
-                String autoModel = arrOfStr[1];
-                String autoYear = arrOfStr[2];
-
-                Toast.makeText(getApplicationContext(), "Hello " + autoBrand + " , " + autoModel + " , " + autoYear, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(view.getContext(), RecordListActivity.class);
-                startActivity(intent);
-            }
-        });
+        myAdapter = new CustomAdapter(allAutosList);
+        myCarsListView.setAdapter(myAdapter);
 
     }
 
@@ -68,10 +57,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         allAutosList = db.getAllAutos();
-        myCarsList.clear();
-        for (int i = 0; i < allAutosList.size(); i++)
-            myCarsList.add(allAutosList.get(i).getBrand() + " " + allAutosList.get(i).getModel() + " " + allAutosList.get(i).getYear());
-        arrayAdapter.notifyDataSetChanged();
+        myAdapter.setAllAutosList(allAutosList);
+        myAdapter.notifyDataSetChanged();
     }
 
     public void addCar(View view){
@@ -102,4 +89,5 @@ public class MainActivity extends AppCompatActivity {
                 return false;
         }
     }
+
 }

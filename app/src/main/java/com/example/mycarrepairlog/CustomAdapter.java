@@ -17,6 +17,9 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     private static final String TAG = "CustomAdapter";
 
+    private List<AutoModel> allAutosList;
+    ConstraintLayout lvItemView;
+
     public List<AutoModel> getAllAutosList() {
         return allAutosList;
     }
@@ -25,8 +28,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         this.allAutosList = allAutosList;
     }
 
-    private List<AutoModel> allAutosList;
-    ConstraintLayout lvItemView;
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear;
@@ -35,12 +37,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             super(v);
             lvItemView = (ConstraintLayout) v.findViewById(R.id.lvItemView);
             // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(new View.OnClickListener() {
+ /*           v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
                 }
             });
+*/
+
             txtViewRecordID = (TextView) v.findViewById(R.id.txtViewRecordID);
             txtViewBrand = (TextView) v.findViewById(R.id.txtViewBrand);
             txtViewModel = (TextView) v.findViewById(R.id.txtViewModel);
@@ -48,9 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         }
 
         public TextView getTxtViewRecordID() { return txtViewRecordID; }
-        public TextView getTxtViewBrand() {
-            return txtViewBrand;
-        }
+        public TextView getTxtViewBrand() { return txtViewBrand; }
         public TextView getTxtViewModel() { return txtViewModel; }
         public TextView getTxtViewYear() { return txtViewYear; }
     }
@@ -63,7 +65,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         @NonNull
     @Override
-    public CustomAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
 
             // Create a new view.
@@ -84,11 +86,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.getTxtViewBrand().setText(allAutosList.get(position).getBrand());
         viewHolder.getTxtViewModel().setText(allAutosList.get(position).getModel());
         viewHolder.getTxtViewYear().setText(String.valueOf(allAutosList.get(position).getYear()));
+
         lvItemView.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-
+                Log.d(TAG, "Element " + position + " clicked.");
                 Toast.makeText(view.getContext(), "Hello " + viewHolder.getTxtViewRecordID().getText() + " , " +
                         viewHolder.getTxtViewBrand().getText() + " , " + viewHolder.getTxtViewModel().getText() + " , " +
                         viewHolder.getTxtViewYear().getText(), Toast.LENGTH_LONG).show();
