@@ -19,10 +19,10 @@ public class AddCarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
 
-        editTxtCarBrand = findViewById(R.id.editTxtCarBrand);
-        editTxtCarModel = findViewById(R.id.editTxtCarModel);
-        editTxtCarYear = findViewById(R.id.editTxtCarYear);
-        editTxtCarKilometers = findViewById(R.id.editTxtCarKilometers);
+        editTxtCarBrand = findViewById(R.id.editTxtCarBrandu);
+        editTxtCarModel = findViewById(R.id.editTxtCarModelu);
+        editTxtCarYear = findViewById(R.id.editTxtCarYearu);
+        editTxtCarKilometers = findViewById(R.id.editTxtCarKilometersu);
         btnInsertCar = findViewById(R.id.btnInsertCar);
 
     }

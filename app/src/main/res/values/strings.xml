@@ -18,4 +18,6 @@
     <string name="listRecords">Records List</string>
     <string name="btnAddRecord">Add Record</string>
     <string name="btnInsertCar">Insert</string>
+    <string name="btnUpdateCar">Update</string>
+    <string name="txtViewID">Record ID</string>
 </resources>

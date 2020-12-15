@@ -1,5 +1,6 @@
 package com.example.mycarrepairlog;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,14 +39,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public ViewHolder(View v) {
             super(v);
             lvItemView = (ConstraintLayout) v.findViewById(R.id.lvItemView);
-            // Define click listener for the ViewHolder's View.
- /*           v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
-                }
-            });
-*/
             ivEdit = (ImageView) v.findViewById(R.id.ivEdit);
             txtViewRecordID = (TextView) v.findViewById(R.id.txtViewRecordID);
             txtViewBrand = (TextView) v.findViewById(R.id.txtViewBrand);
@@ -93,12 +86,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
             @Override
             public void onClick(View view) {
+                Context context = view.getContext();
                 Log.d(TAG, "Element " + position + " clicked.");
-                Toast.makeText(view.getContext(), "Hello " + viewHolder.getTxtViewRecordID().getText() + " , " +
-                        viewHolder.getTxtViewBrand().getText() + " , " + viewHolder.getTxtViewModel().getText() + " , " +
-                        viewHolder.getTxtViewYear().getText(), Toast.LENGTH_LONG).show();
-                //Intent intent = new Intent(view.getContext(), RecordListActivity.class);
-                //startActivity(intent);
+                int recordID = Integer.parseInt((String) viewHolder.getTxtViewRecordID().getText());
+                String autoBrand = (String) viewHolder.getTxtViewBrand().getText();
+                String autoModel = (String) viewHolder.getTxtViewModel().getText();
+                int autoYear = Integer.parseInt((String) viewHolder.getTxtViewYear().getText());
+
+                Toast.makeText(view.getContext(), "Hello " + recordID + " , " +
+                        autoBrand + " , " + autoModel + " , " + autoYear, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context, UpdateCarActivity.class);
+                intent.putExtra("autoBrand", autoBrand );
+                intent.putExtra("autoModel", autoModel);
+                intent.putExtra("autoYear", autoYear);
+                intent.putExtra("ID", recordID);
+                context.startActivity(intent);
             }
         });
     }
