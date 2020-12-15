@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear;
+        private ImageView ivEdit;
 
         public ViewHolder(View v) {
             super(v);
@@ -44,7 +46,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 }
             });
 */
-
+            ivEdit = (ImageView) v.findViewById(R.id.ivEdit);
             txtViewRecordID = (TextView) v.findViewById(R.id.txtViewRecordID);
             txtViewBrand = (TextView) v.findViewById(R.id.txtViewBrand);
             txtViewModel = (TextView) v.findViewById(R.id.txtViewModel);
@@ -87,7 +89,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.getTxtViewModel().setText(allAutosList.get(position).getModel());
         viewHolder.getTxtViewYear().setText(String.valueOf(allAutosList.get(position).getYear()));
 
-        lvItemView.setOnClickListener(new View.OnClickListener(){
+        viewHolder.ivEdit.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
