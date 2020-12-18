@@ -79,6 +79,29 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean addLogRecord(LogRecordModel logRecordModel){
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ID, logRecordModel.getID());
+        cv.put(COLUMN_LOG_DETAIL, logRecordModel.getDetail());
+        cv.put(COLUMN_LOG_DATE1, logRecordModel.getDate1());
+        cv.put(COLUMN_LOG_DATE2, logRecordModel.getDate2());
+        cv.put(COLUMN_LOG_KILOMETERS1, logRecordModel.getKilometers1());
+        cv.put(COLUMN_LOG_KILOMETERS2, logRecordModel.getKilometers2());
+
+        long result = db.insert(LOG_TABLE, null, cv);
+
+        if (result == -1) {
+            db.close();
+            return false;
+        } else {
+            db.close();
+            return true;
+        }
+    }
+
     public boolean deleteOne(int autoID){
 
 
