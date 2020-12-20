@@ -8,13 +8,14 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddRecordActivity extends AppCompatActivity {
 
     EditText edtTextDetail, edtTextDate, edtTextKilometers;
     TextView textAuto;
 
-    int ID, kilometers1, kilometer2;
+    int ID = 0, kilometers1= 0, kilometer2 = 0;
     String detail = "";
     String date1 = "";
     String auto = "";
@@ -34,9 +35,9 @@ public class AddRecordActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         ID = intent.getIntExtra("ID", 0);
-        auto = intent.getStringExtra("Auto");
+        auto = intent.getStringExtra("autoBrand") + " " +intent.getStringExtra("autoModel");
 
-        textAuto.setText((String)auto);
+        textAuto.setText(auto + " " + ID);
 
     }
 
@@ -46,7 +47,9 @@ public class AddRecordActivity extends AppCompatActivity {
 
         kilometers1 = Integer.parseInt(edtTextKilometers.getText().toString());
 
-        LogRecordModel logRecordModel = new LogRecordModel(ID, kilometers1, kilometer2, detail, date1, date2);
+        Toast.makeText(getApplicationContext(), "Date: " + date1 + " , Kilometers: " + kilometers1 + " , Details: " + detail, Toast.LENGTH_SHORT).show();
+
+        //LogRecordModel logRecordModel = new LogRecordModel(ID, kilometers1, kilometer2, detail, date1, date2);
 
     }
 }

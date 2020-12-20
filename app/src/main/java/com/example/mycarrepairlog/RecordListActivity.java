@@ -18,20 +18,13 @@ public class RecordListActivity extends AppCompatActivity {
 
         Button btnAddRecord = findViewById(R.id.btnAddRecord);
 
-        btnAddRecord.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Add Record selected", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(view.getContext(), AddRecordActivity.class);
-                startActivity(intent);
-            }
-
-        });
-
 
     }
 
-
+    public void insertLogRecord(View view){
+        Toast.makeText(getApplicationContext(), "Add Record selected", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(view.getContext(), AddRecordActivity.class);
+        startActivity(intent);
+    }
 
 }
