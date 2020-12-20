@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +33,7 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
         private final TextView txtViewDate1, txtViewDate2, txtViewKilometers1, txtViewKilometers2, txtViewDetail;
 
 
-        public ViewHolder(@NonNull View v) {
+        public ViewHolder( View v) {
             super(v);
             txtViewDate1 = (TextView) v.findViewById(R.id.txtViewDate1);
             txtViewDate2 = (TextView) v.findViewById(R.id.txtViewDate2);
@@ -48,9 +48,9 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
         public TextView getTxtViewKilometers2() { return txtViewKilometers2; }
         public TextView getTxtViewDetail() {return txtViewDetail;}
     }
-    @NonNull
+
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int viewType) {
         // Create a new view.
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.logrecord_view, viewGroup, false);
@@ -58,8 +58,9 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
         return new LogListAdapter.ViewHolder(v);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder( ViewHolder viewHolder, int position) {
         viewHolder.getTxtViewDate1().setText(String.valueOf(allLogRecordList.get(position).getDate1()));
         viewHolder.getTxtViewDate2().setText(allLogRecordList.get(position).getDate2());
         viewHolder.getTxtViewKilometers1().setText(allLogRecordList.get(position).getKilometers1());

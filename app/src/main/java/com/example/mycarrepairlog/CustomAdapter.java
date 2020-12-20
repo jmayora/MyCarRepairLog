@@ -75,8 +75,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
-        Log.d(TAG, "Element " + position + " set.");
-
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         viewHolder.getTxtViewRecordID().setText(String.valueOf(allAutosList.get(position).getID()));
@@ -85,7 +83,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.getTxtViewYear().setText(String.valueOf(allAutosList.get(position).getYear()));
 
         viewHolder.ivEdit.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
