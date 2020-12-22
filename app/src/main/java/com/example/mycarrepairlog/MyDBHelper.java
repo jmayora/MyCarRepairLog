@@ -147,7 +147,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
         String selectAllLogRecords = "SELECT * FROM " + LOG_TABLE + " WHERE " +
                 COLUMN_ID + " = " + auto_ID;
-
+        Log.d("getAllLogRecords", "Select string = " + selectAllLogRecords);
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor c = db.rawQuery(selectAllLogRecords,null);

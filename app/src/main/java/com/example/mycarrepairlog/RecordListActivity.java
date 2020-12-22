@@ -32,7 +32,7 @@ public class RecordListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_list);
 
-        Button btnAddRecord = findViewById(R.id.btnAddRecord);
+//        Button btnAddRecord = findViewById(R.id.btnAddRecord);
         auto_ID = getIntent().getIntExtra("ID", 1);
         auto_Brand = getIntent().getStringExtra("autoBrand");
         auto_Model = getIntent().getStringExtra("autoModel");
