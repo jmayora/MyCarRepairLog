@@ -49,7 +49,13 @@ public class RecordListActivity extends AppCompatActivity {
         myLogListView.setAdapter(myAdapter);
 
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        allLogRecordList = db.getAllLogRecords(auto_ID);
+        myAdapter.setAllLogRecordList(allLogRecordList);
+        myAdapter.notifyDataSetChanged();
+    }
     public void addLogRecord(View view){
         Toast.makeText(getApplicationContext(), "Add Record selected", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(view.getContext(), AddRecordActivity.class);

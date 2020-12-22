@@ -51,7 +51,7 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.logrecord_view, viewGroup, false);
 
-        return new LogListAdapter.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
 
