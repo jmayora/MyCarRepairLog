@@ -15,7 +15,7 @@ public class AddRecordActivity extends AppCompatActivity {
     EditText edtTextDetail, edtTextDate, edtTextKilometers;
     TextView textAuto;
 
-    int ID = 0, kilometers1= 0, kilometer2 = 0;
+    int ID = 1, kilometers1= 0, kilometer2 = 0;
     String detail = "";
     String date1 = "";
     String auto = "";
@@ -34,7 +34,7 @@ public class AddRecordActivity extends AppCompatActivity {
         edtTextKilometers = findViewById(R.id.editTextKilometers);
 
         Intent intent = getIntent();
-        ID = intent.getIntExtra("ID", 0);
+        ID = intent.getIntExtra("auto_ID", 1);
         auto = intent.getStringExtra("autoBrand") + " " +intent.getStringExtra("autoModel");
 
         textAuto.setText(auto + " " + ID);
@@ -44,12 +44,17 @@ public class AddRecordActivity extends AppCompatActivity {
     public void insertLogRecord(View view){
         detail = edtTextDetail.getText().toString();
         date1 = edtTextDate.getText().toString();
-
         kilometers1 = Integer.parseInt(edtTextKilometers.getText().toString());
 
         Toast.makeText(getApplicationContext(), "Date: " + date1 + " , Kilometers: " + kilometers1 + " , Details: " + detail, Toast.LENGTH_SHORT).show();
 
-        //LogRecordModel logRecordModel = new LogRecordModel(ID, kilometers1, kilometer2, detail, date1, date2);
-
+        MyDBHelper myDBHelper = new MyDBHelper(this);
+        LogRecordModel logRecordModel = new LogRecordModel(ID, kilometers1, kilometer2, detail, date1, date2);
+        boolean success = myDBHelper.addLogRecord(logRecordModel);
+        if (success) {
+            Toast.makeText(getApplicationContext(), "Inserted log record", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Insert failed", Toast.LENGTH_LONG).show();
+        }
     }
 }

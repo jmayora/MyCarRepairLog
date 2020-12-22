@@ -23,6 +23,9 @@ public class RecordListActivity extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     LogListAdapter myAdapter;
     int logRecordsCount;
+    int auto_ID;
+    String auto_Brand;
+    String auto_Model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,9 @@ public class RecordListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_record_list);
 
         Button btnAddRecord = findViewById(R.id.btnAddRecord);
-        int auto_ID = getIntent().getIntExtra("ID", 1);
+        auto_ID = getIntent().getIntExtra("ID", 1);
+        auto_Brand = getIntent().getStringExtra("autoBrand");
+        auto_Model = getIntent().getStringExtra("autoModel");
 
         myLogListView = (RecyclerView) findViewById(R.id.rvLogList);
 
@@ -48,6 +53,9 @@ public class RecordListActivity extends AppCompatActivity {
     public void addLogRecord(View view){
         Toast.makeText(getApplicationContext(), "Add Record selected", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(view.getContext(), AddRecordActivity.class);
+        intent.putExtra("auto_ID", auto_ID);
+        intent.putExtra("autoBrand", auto_Brand);
+        intent.putExtra("autoModel", auto_Model);
         startActivity(intent);
     }
 

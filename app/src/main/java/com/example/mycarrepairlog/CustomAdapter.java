@@ -21,17 +21,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     private static final String TAG = "CustomAdapter";
 
     private List<AutoModel> allAutosList;
-    ConstraintLayout lvItemView;
 
-    public List<AutoModel> getAllAutosList() {
-        return allAutosList;
+    public CustomAdapter(List<AutoModel> allAutosList) {
+        this.allAutosList = allAutosList;
     }
-
     public void setAllAutosList(List<AutoModel> allAutosList) {
         this.allAutosList = allAutosList;
     }
 
-
+    public List<AutoModel> getAllAutosList() {
+        return allAutosList;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear;
@@ -39,7 +39,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         public ViewHolder(View v) {
             super(v);
-            lvItemView = (ConstraintLayout) v.findViewById(R.id.lvItemView);
+
             ivEdit = (ImageView) v.findViewById(R.id.ivEdit);
             ivAddLog = (ImageView) v.findViewById(R.id.ivAddLog);
             txtViewRecordID = (TextView) v.findViewById(R.id.txtViewRecordID);
@@ -54,27 +54,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView getTxtViewYear() { return txtViewYear; }
     }
 
-    public CustomAdapter(List<AutoModel> allAutosList) {
-
-        this.allAutosList = allAutosList;
-    }
-
-
-        @NonNull
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-
-
+    public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int viewType) {
             // Create a new view.
             View v = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.item_view, viewGroup, false);
 
             return new ViewHolder(v);
-
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder( ViewHolder viewHolder, final int position) {
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         viewHolder.getTxtViewRecordID().setText(String.valueOf(allAutosList.get(position).getID()));

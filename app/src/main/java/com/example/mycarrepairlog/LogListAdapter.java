@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,23 +14,20 @@ import java.util.List;
 public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHolder>{
 
     private List<LogRecordModel> allLogRecordList;
-    ConstraintLayout lvItemView;
 
     public LogListAdapter(List<LogRecordModel> allLogRecordList) {
         this.allLogRecordList = allLogRecordList;
-    }
-
-    public List<LogRecordModel> getAllLogRecordList() {
-        return allLogRecordList;
     }
 
     public void setAllLogRecordList(List<LogRecordModel> allLogRecordList) {
         this.allLogRecordList = allLogRecordList;
     }
 
+    public List<LogRecordModel> getAllLogRecordList() {
+        return allLogRecordList;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView txtViewDate1, txtViewDate2, txtViewKilometers1, txtViewKilometers2, txtViewDetail;
-
 
         public ViewHolder( View v) {
             super(v);
@@ -45,7 +44,7 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
         public TextView getTxtViewKilometers2() { return txtViewKilometers2; }
         public TextView getTxtViewDetail() {return txtViewDetail;}
     }
-
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int viewType) {
         // Create a new view.
@@ -58,9 +57,9 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder( ViewHolder viewHolder, int position) {
-        viewHolder.getTxtViewDate1().setText(String.valueOf(allLogRecordList.get(position).getDate1()));
+        viewHolder.getTxtViewDate1().setText(allLogRecordList.get(position).getDate1());
         viewHolder.getTxtViewDate2().setText(allLogRecordList.get(position).getDate2());
-        viewHolder.getTxtViewKilometers1().setText(allLogRecordList.get(position).getKilometers1());
+        viewHolder.getTxtViewKilometers1().setText(String.valueOf(allLogRecordList.get(position).getKilometers1()));
         viewHolder.getTxtViewKilometers2().setText(String.valueOf(allLogRecordList.get(position).getKilometers2()));
         viewHolder.getTxtViewDetail().setText(allLogRecordList.get(position).getDetail());
     }

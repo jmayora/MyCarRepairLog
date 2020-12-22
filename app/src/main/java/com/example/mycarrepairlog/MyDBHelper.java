@@ -45,8 +45,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
             COLUMN_BRAND + " TEXT, " + COLUMN_MODEL + " TEXT, " + COLUMN_YEAR + " INT, " + COLUMN_CHASSIS + " TEXT, "+
             COLUMN_LICENSE + " TEXT, " + COLUMN_INSURANCE + " TEXT)";
 
-    String createTableStatement2 = "CREATE TABLE " + LOG_TABLE + " (" + COLUMN_ID + " INTEGER, " + COLUMN_LOG_DATE1 + " DATE, " +
-            COLUMN_LOG_DATE2 + " DATE, " + COLUMN_LOG_DETAIL + " TEXT, " + COLUMN_LOG_KILOMETERS1 + " INT, " +
+    String createTableStatement2 = "CREATE TABLE " + LOG_TABLE + " (" + COLUMN_ID + " INTEGER, " + COLUMN_LOG_DATE1 + " TEXT, " +
+            COLUMN_LOG_DATE2 + " TEXT, " + COLUMN_LOG_DETAIL + " TEXT, " + COLUMN_LOG_KILOMETERS1 + " INT, " +
             COLUMN_LOG_KILOMETERS2 + " INT)";
 
     db.execSQL(createTableStatement1);
@@ -162,8 +162,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
                 int kilometers2 = c.getInt(5);
 
 
-                LogRecordModel auto = new LogRecordModel(ID, kilometers1, kilometers2 , date1, date2, detail);
-                allLogRecordsList.add(auto);
+                LogRecordModel logRecord = new LogRecordModel(ID, kilometers1, kilometers2 , detail, date1, date2);
+                allLogRecordsList.add(logRecord);
 
             } while (c.moveToNext());
         } else {
