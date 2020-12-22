@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -136,5 +138,39 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.close();
         return allAutosList;
         
+    }
+
+    public List<LogRecordModel> getAllLogRecords( int auto_ID){
+
+        Log.d("getAllLogRecords", "auto ID = "+ auto_ID);
+        List<LogRecordModel> allLogRecordsList = new ArrayList<>();
+
+        String selectAllLogRecords = "SELECT * FROM " + LOG_TABLE + " WHERE " +
+                COLUMN_ID + " = " + auto_ID;
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c = db.rawQuery(selectAllLogRecords,null);
+
+        if(c.moveToFirst()){
+            do {
+                int ID = c.getInt(0);
+                String date1 = c.getString(1);
+                String date2 = c.getString(2);
+                String detail = c.getString(3);
+                int kilometers1 = c.getInt(4);
+                int kilometers2 = c.getInt(5);
+
+
+                LogRecordModel auto = new LogRecordModel(ID, kilometers1, kilometers2 , date1, date2, detail);
+                allLogRecordsList.add(auto);
+
+            } while (c.moveToNext());
+        } else {
+
+        }
+        c.close();
+        db.close();
+        return allLogRecordsList;
     }
 }

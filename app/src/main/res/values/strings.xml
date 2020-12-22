@@ -20,4 +20,6 @@
     <string name="btnInsertCar">Insert</string>
     <string name="btnUpdateCar">Update</string>
     <string name="txtViewID">Record ID</string>
+    <string name="ivEdit">Edit</string>
+    <string name="ivAddLog">Add Log</string>
 </resources>

@@ -113,10 +113,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             String autoModel = (String) viewHolder.getTxtViewModel().getText();
             int autoYear = Integer.parseInt((String) viewHolder.getTxtViewYear().getText());
 
-            Toast.makeText(view.getContext(), "Hello " + recordID + " , " +
-                    autoBrand + " , " + autoModel + " , " + autoYear, Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(context, AddRecordActivity.class);
+            Intent intent = new Intent(context, RecordListActivity.class);
             intent.putExtra("autoBrand", autoBrand );
             intent.putExtra("autoModel", autoModel);
             intent.putExtra("autoYear", autoYear);

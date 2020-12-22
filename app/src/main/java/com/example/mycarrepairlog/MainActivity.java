@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void viewLogList(View view){
+
+        Toast.makeText(getApplicationContext(), "View Log List", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), RecordListActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
