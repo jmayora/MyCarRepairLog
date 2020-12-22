@@ -4,10 +4,10 @@
     <string name="btnAddCar">Add Car</string>
     <string name="btnListCars">List Cars</string>
     <string name="txtAuto">Auto</string>
-    <string name="editTextKilometers">Kilometros</string>
-    <string name="editTextDate">Fecha</string>
-    <string name="txtTitulo">Registro de Mantenimiento</string>
-    <string name="editTextTrabajo">Descripcion del trabajo</string>
+    <string name="editTextKilometers">Kilometers</string>
+    <string name="editTextDate">Date</string>
+    <string name="txtTitle">Log Record</string>
+    <string name="editTextDetail">Detail of Work</string>
     <string name="menu_add">Add Car</string>
     <string name="menu_settings">Settings</string>
     <string name="txtviewRecordId">Record ID</string>
@@ -20,4 +20,6 @@
     <string name="btnInsertCar">Insert</string>
     <string name="btnUpdateCar">Update</string>
     <string name="txtViewID">Record ID</string>
+    <string name="ivEdit">Edit</string>
+    <string name="ivAddLog">Add Log</string>
 </resources>

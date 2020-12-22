@@ -2,6 +2,7 @@ package com.example.mycarrepairlog;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,12 +35,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear;
-        private ImageView ivEdit;
+        private ImageView ivEdit, ivAddLog;
 
         public ViewHolder(View v) {
             super(v);
             lvItemView = (ConstraintLayout) v.findViewById(R.id.lvItemView);
             ivEdit = (ImageView) v.findViewById(R.id.ivEdit);
+            ivAddLog = (ImageView) v.findViewById(R.id.ivAddLog);
             txtViewRecordID = (TextView) v.findViewById(R.id.txtViewRecordID);
             txtViewBrand = (TextView) v.findViewById(R.id.txtViewBrand);
             txtViewModel = (TextView) v.findViewById(R.id.txtViewModel);
@@ -73,8 +75,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
-        Log.d(TAG, "Element " + position + " set.");
-
         // Get element from your dataset at this position and replace the contents of the view
         // with that element
         viewHolder.getTxtViewRecordID().setText(String.valueOf(allAutosList.get(position).getID()));
@@ -83,7 +83,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.getTxtViewYear().setText(String.valueOf(allAutosList.get(position).getYear()));
 
         viewHolder.ivEdit.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
@@ -102,6 +101,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 intent.putExtra("autoYear", autoYear);
                 intent.putExtra("ID", recordID);
                 context.startActivity(intent);
+            }
+        });
+
+        viewHolder.ivAddLog.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+            Context context = view.getContext();
+            int recordID = Integer.parseInt((String) viewHolder.getTxtViewRecordID().getText());
+            String autoBrand = (String) viewHolder.getTxtViewBrand().getText();
+            String autoModel = (String) viewHolder.getTxtViewModel().getText();
+            int autoYear = Integer.parseInt((String) viewHolder.getTxtViewYear().getText());
+
+            Intent intent = new Intent(context, RecordListActivity.class);
+            intent.putExtra("autoBrand", autoBrand );
+            intent.putExtra("autoModel", autoModel);
+            intent.putExtra("autoYear", autoYear);
+            intent.putExtra("ID", recordID);
+            context.startActivity(intent);
             }
         });
     }

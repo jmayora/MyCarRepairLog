@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -21,7 +23,16 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_BRAND = "COLUMN_BRAND";
     public static final String COLUMN_MODEL = "COLUMN_MODEL";
     public static final String COLUMN_YEAR = "COLUMN_YEAR";
-    public static final String COLUMN_KILOMETERS = "COLUMN_KILOMETERS";
+    public static final String COLUMN_CHASSIS = "COLUMN_CHASSIS";
+    public static final String COLUMN_LICENSE = "COLUMN_LICENSE";
+    public static final String COLUMN_INSURANCE = "COLUMN_INSURANCE";
+
+    public static final String LOG_TABLE = "LOG_TABLE";
+    public static final String COLUMN_LOG_DETAIL = "COLUMN_LOG_DETAIL";
+    public static final String COLUMN_LOG_DATE1 = "COLUMN_LOG_DATE1";
+    public static final String COLUMN_LOG_DATE2 = "COLUMN_LOG_DATE2";
+    public static final String COLUMN_LOG_KILOMETERS1 = "COLUMN_LOG_KILOMETERS1";
+    public static final String COLUMN_LOG_KILOMETERS2 = "COLUMN_LOG_KILOMETERS2";
 
 
     public MyDBHelper(@Nullable Context context) {
@@ -30,9 +41,17 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-    String createTableStatement = "CREATE TABLE " + AUTO_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BRAND + " TEXT, " + COLUMN_MODEL + " TEXT, " + COLUMN_YEAR + " INT)";
+    String createTableStatement1 = "CREATE TABLE " + AUTO_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_BRAND + " TEXT, " + COLUMN_MODEL + " TEXT, " + COLUMN_YEAR + " INT, " + COLUMN_CHASSIS + " TEXT, "+
+            COLUMN_LICENSE + " TEXT, " + COLUMN_INSURANCE + " TEXT)";
 
-    db.execSQL(createTableStatement);
+    String createTableStatement2 = "CREATE TABLE " + LOG_TABLE + " (" + COLUMN_ID + " INTEGER, " + COLUMN_LOG_DATE1 + " DATE, " +
+            COLUMN_LOG_DATE2 + " DATE, " + COLUMN_LOG_DETAIL + " TEXT, " + COLUMN_LOG_KILOMETERS1 + " INT, " +
+            COLUMN_LOG_KILOMETERS2 + " INT)";
+
+    db.execSQL(createTableStatement1);
+    db.execSQL(createTableStatement2);
+
     }
 
     @Override
@@ -60,6 +79,29 @@ public class MyDBHelper extends SQLiteOpenHelper {
         }
 
 
+    }
+
+    public boolean addLogRecord(LogRecordModel logRecordModel){
+
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_ID, logRecordModel.getID());
+        cv.put(COLUMN_LOG_DETAIL, logRecordModel.getDetail());
+        cv.put(COLUMN_LOG_DATE1, logRecordModel.getDate1());
+        cv.put(COLUMN_LOG_DATE2, logRecordModel.getDate2());
+        cv.put(COLUMN_LOG_KILOMETERS1, logRecordModel.getKilometers1());
+        cv.put(COLUMN_LOG_KILOMETERS2, logRecordModel.getKilometers2());
+
+        long result = db.insert(LOG_TABLE, null, cv);
+
+        if (result == -1) {
+            db.close();
+            return false;
+        } else {
+            db.close();
+            return true;
+        }
     }
 
     public boolean deleteOne(int autoID){
@@ -96,5 +138,39 @@ public class MyDBHelper extends SQLiteOpenHelper {
         db.close();
         return allAutosList;
         
+    }
+
+    public List<LogRecordModel> getAllLogRecords( int auto_ID){
+
+        Log.d("getAllLogRecords", "auto ID = "+ auto_ID);
+        List<LogRecordModel> allLogRecordsList = new ArrayList<>();
+
+        String selectAllLogRecords = "SELECT * FROM " + LOG_TABLE + " WHERE " +
+                COLUMN_ID + " = " + auto_ID;
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c = db.rawQuery(selectAllLogRecords,null);
+
+        if(c.moveToFirst()){
+            do {
+                int ID = c.getInt(0);
+                String date1 = c.getString(1);
+                String date2 = c.getString(2);
+                String detail = c.getString(3);
+                int kilometers1 = c.getInt(4);
+                int kilometers2 = c.getInt(5);
+
+
+                LogRecordModel auto = new LogRecordModel(ID, kilometers1, kilometers2 , date1, date2, detail);
+                allLogRecordsList.add(auto);
+
+            } while (c.moveToNext());
+        } else {
+
+        }
+        c.close();
+        db.close();
+        return allLogRecordsList;
     }
 }
