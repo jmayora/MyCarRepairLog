@@ -1,8 +1,12 @@
 package com.example.mycarrepairlog;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +32,7 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView txtViewDate1, txtViewDate2, txtViewKilometers1, txtViewKilometers2, txtViewDetail;
+        private final ImageButton ibtnEditRecord;
 
         public ViewHolder( View v) {
             super(v);
@@ -36,6 +41,7 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
             txtViewKilometers1 = (TextView) v.findViewById(R.id.txtViewKilometers1);
             txtViewKilometers2  = (TextView) v.findViewById(R.id.txtViewKilometers2);
             txtViewDetail = (TextView) v.findViewById(R.id.txtViewDetail);
+            ibtnEditRecord =  v.findViewById(R.id.ibtnEditRecord);
         }
 
         public TextView getTxtViewDate1() { return txtViewDate1; }
@@ -43,6 +49,7 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
         public TextView getTxtViewKilometers1() { return txtViewKilometers1; }
         public TextView getTxtViewKilometers2() { return txtViewKilometers2; }
         public TextView getTxtViewDetail() {return txtViewDetail;}
+        public ImageButton getIbtnEditRecord() {return ibtnEditRecord;}
     }
     @NonNull
     @Override
@@ -62,6 +69,22 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
         viewHolder.getTxtViewKilometers1().setText(String.valueOf(allLogRecordList.get(position).getKilometers1()));
         viewHolder.getTxtViewKilometers2().setText(String.valueOf(allLogRecordList.get(position).getKilometers2()));
         viewHolder.getTxtViewDetail().setText(allLogRecordList.get(position).getDetail());
+
+        viewHolder.getIbtnEditRecord().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String date = viewHolder.txtViewDate1.getText().toString();
+                String kilometers = viewHolder.txtViewKilometers1.getText().toString();
+                String detail = viewHolder.txtViewDetail.getText().toString();
+                Context context = view.getContext();
+                Intent intent = new Intent(context, EditLogRecordActivity.class);
+                intent.putExtra("date", date);
+                intent.putExtra("kilometers", kilometers);
+                intent.putExtra("detail", detail);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override

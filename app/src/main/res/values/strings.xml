@@ -23,4 +23,6 @@
     <string name="ivEdit">Edit</string>
     <string name="ivAddLog">Add Log</string>
     <string name="ibtnEditRecord">Edit Record</string>
+    <string name="ibtnSaveRecord">Save Record</string>
+    <string name="editRecordTitle">EDIT RECORD</string>
 </resources>
