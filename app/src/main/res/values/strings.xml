@@ -22,4 +22,5 @@
     <string name="txtViewID">Record ID</string>
     <string name="ivEdit">Edit</string>
     <string name="ivAddLog">Add Log</string>
+    <string name="ibtnEditRecord">Edit Record</string>
 </resources>

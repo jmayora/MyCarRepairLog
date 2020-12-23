@@ -4,29 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lvLogRecordView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/txtViewDate1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:hint="@string/editTextDate"
         android:text="@string/editTextDate"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtViewDate2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:hint="@string/editTextDate"
         android:text="@string/editTextDate"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtViewDate1"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,23 +35,23 @@
         android:id="@+id/txtViewKilometers1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:hint="@string/editTextKilometers"
         android:text="@string/editTextKilometers"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/txtViewDate1" />
 
     <TextView
         android:id="@+id/txtViewKilometers2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:hint="@string/editTextKilometers"
         android:text="@string/editTextKilometers"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtViewKilometers1"
         app:layout_constraintTop_toBottomOf="@+id/txtViewDate2" />
 
@@ -59,11 +60,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="4dp"
         android:hint="@string/editTextDetail"
         android:text="@string/editTextDetail"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewKilometers1"
@@ -74,7 +75,6 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:background="?android:attr/listDivider"
         android:backgroundTint="#009688"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,5 +82,36 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewDetail" />
+
+    <ImageButton
+        android:id="@+id/ibtnEditRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#00BCD4"
+        android:contentDescription="@string/ibtnEditRecord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_create_24px" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/editTextDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/editTextKilometers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewDate1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
