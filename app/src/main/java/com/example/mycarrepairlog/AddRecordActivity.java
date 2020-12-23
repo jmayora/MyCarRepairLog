@@ -2,15 +2,19 @@ package com.example.mycarrepairlog;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AddRecordActivity extends AppCompatActivity {
+import java.util.Calendar;
+
+public class AddRecordActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     EditText edtTextDetail, edtTextDate, edtTextKilometers;
     TextView textAuto;
@@ -36,10 +40,28 @@ public class AddRecordActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ID = intent.getIntExtra("auto_ID", 1);
         auto = intent.getStringExtra("autoBrand") + " " +intent.getStringExtra("autoModel");
+        String text = auto + " " + ID;
+        textAuto.setText(text);
 
-        textAuto.setText(auto + " " + ID);
-
+        edtTextDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog();
+            }
+        });
     }
+
+    public void showDatePickerDialog(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.show();
+    }
+
 
     public void insertLogRecord(View view){
         detail = edtTextDetail.getText().toString();
@@ -56,5 +78,11 @@ public class AddRecordActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Insert failed", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year , int month, int dayOfMonth) {
+        String date = dayOfMonth + "/" + month+1 + "/" + year;
+        edtTextDate.setText(date);
     }
 }

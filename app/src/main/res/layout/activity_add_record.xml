@@ -44,7 +44,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/editTextDate"
-        android:inputType="text"
+        android:inputType="date|text"
         app:layout_constraintEnd_toEndOf="@+id/editTextDetail"
         app:layout_constraintStart_toStartOf="@+id/editTextDetail"
         app:layout_constraintTop_toBottomOf="@+id/editTextKilometers" />
