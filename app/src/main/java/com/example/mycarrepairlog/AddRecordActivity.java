@@ -87,7 +87,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
 
     @Override
     public void onDateSet(DatePicker datePicker, int year , int month, int dayOfMonth) {
-        String date = dayOfMonth + "/" + month+1 + "/" + year;
+        String date = dayOfMonth + "/" + (month+1) + "/" + year;
         edtTextDate.setText(date);
     }
 }

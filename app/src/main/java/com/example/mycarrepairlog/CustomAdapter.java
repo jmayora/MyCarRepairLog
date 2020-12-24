@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
@@ -33,7 +35,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear, txtViewChassis,
-        txtViewLicense, txtViewInsurance;
+        txtViewLicense, txtViewInsurance, txtViewLastDate, txtViewLastKilometers;
         private ImageView ivEdit, ivAddLog;
 
         public ViewHolder(View v) {
@@ -46,8 +48,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             txtViewModel = (TextView) v.findViewById(R.id.txtViewModel);
             txtViewYear  = (TextView) v.findViewById(R.id.txtViewYear);
             txtViewChassis = (TextView) v.findViewById(R.id.txtViewChassis);
-            txtViewLicense = (TextView) v.findViewById(R.id.editTxtLicense);
+            txtViewLicense = (TextView) v.findViewById(R.id.txtViewLicense);
             txtViewInsurance = (TextView) v.findViewById(R.id.txtViewInsurance);
+            txtViewLastDate = (TextView) v.findViewById(R.id.txtViewLastDate);
+            txtViewLastKilometers = (TextView) v.findViewById(R.id.txtViewLastKilometers);
+
         }
 
         public TextView getTxtViewRecordID() { return txtViewRecordID; }
@@ -57,6 +62,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView getTxtViewChassis() { return txtViewChassis; }
         public TextView getTxtViewLicense() { return txtViewLicense; }
         public TextView getTxtViewInsurance() { return txtViewInsurance; }
+        public TextView getTxtViewLastDate() { return txtViewLastDate; }
+        public TextView getTxtViewLastKilometers() { return txtViewLastKilometers; }
 
     }
 
@@ -81,6 +88,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.getTxtViewChassis().setText(allAutosList.get(position).getChassis());
         viewHolder.getTxtViewLicense().setText(allAutosList.get(position).getLicense());
         viewHolder.getTxtViewInsurance().setText(allAutosList.get(position).getInsurance());
+        viewHolder.getTxtViewLastDate().setText(allAutosList.get(position).getLast_maintenance_date());
+        viewHolder.getTxtViewLastKilometers().setText(String.valueOf(allAutosList.get(position).getLast_kilometers()));
 
         viewHolder.ivEdit.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -94,10 +103,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 String chassis = (String) viewHolder.getTxtViewChassis().getText();
                 String license = (String) viewHolder.getTxtViewLicense().getText();
                 String insurance = (String) viewHolder.getTxtViewInsurance().getText();
+                String lastDate = (String) viewHolder.getTxtViewLastDate().getText();
+                String lastKilometers = (String) viewHolder.getTxtViewLastKilometers().getText();
 
                 Toast.makeText(view.getContext(), "Hello " + recordID + " , " +
                         autoBrand + " , " + autoModel + " , " + autoYear +
-                        " , " + chassis + " , " + license + " , " + insurance, Toast.LENGTH_SHORT).show();
+                        " , " + chassis + " , " + license + " , " + insurance +
+                        " , " + lastDate + " , " + lastKilometers, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, UpdateCarActivity.class);
                 intent.putExtra("autoBrand", autoBrand );
@@ -106,6 +118,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 intent.putExtra("chasis", chassis);
                 intent.putExtra("license", license);
                 intent.putExtra("insurance", insurance);
+                intent.putExtra("lastDate", lastDate);
+                intent.putExtra("lastKilometers", lastKilometers);
                 intent.putExtra("ID", recordID);
                 context.startActivity(intent);
             }

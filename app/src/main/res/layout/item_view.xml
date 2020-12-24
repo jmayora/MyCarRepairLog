@@ -156,9 +156,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="2dp"
         android:text="@string/txtViewInsurance"
-        app:layout_constraintBottom_toTopOf="@id/divider2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView9" />
 
@@ -168,10 +166,57 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="2dp"
         android:text="@string/txtViewInsurance"
-        app:layout_constraintBottom_toTopOf="@id/divider2"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/txtViewLicense" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/editTxtLastMaintenanceDate"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/txtViewLastDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/editTxtLastMaintenanceDate"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewInsurance" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/editTxtLastKilometers"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/divider2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView11" />
+
+    <TextView
+        android:id="@+id/txtViewLastKilometers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/editTxtLastKilometers"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/divider2"
+        app:layout_constraintStart_toEndOf="@id/textView12"
+        app:layout_constraintTop_toBottomOf="@id/txtViewLastDate" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
