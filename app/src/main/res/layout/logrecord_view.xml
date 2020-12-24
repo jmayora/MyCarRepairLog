@@ -8,7 +8,7 @@
     android:background="#FFFFFF">
 
     <TextView
-        android:id="@+id/txtViewDate1"
+        android:id="@+id/txtViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -20,19 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtViewDate2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:hint="@string/editTextDate"
-        android:text="@string/editTextDate"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/txtViewDate1"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtViewKilometers1"
+        android:id="@+id/txtViewKilometers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -41,19 +29,7 @@
         android:text="@string/editTextKilometers"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewDate1" />
-
-    <TextView
-        android:id="@+id/txtViewKilometers2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:hint="@string/editTextKilometers"
-        android:text="@string/editTextKilometers"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/txtViewKilometers1"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewDate2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewDate" />
 
     <TextView
         android:id="@+id/txtViewDetail"
@@ -67,7 +43,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewKilometers1"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewKilometers"
         app:layout_constraintVertical_bias="0.49" />
 
     <View
@@ -112,6 +88,6 @@
         android:layout_marginTop="4dp"
         android:text="@string/editTextKilometers"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewDate1" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
