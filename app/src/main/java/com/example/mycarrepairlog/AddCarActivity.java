@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class AddCarActivity extends AppCompatActivity {
 
     TextView editTxtCarBrand, editTxtCarModel, editTxtCarYear, editTxtCarKilometers;
+    TextView editTxtChassis, editTxtLicense, editTxtInsurance;
     Button btnInsertCar;
 
     @Override
@@ -22,7 +23,7 @@ public class AddCarActivity extends AppCompatActivity {
         editTxtCarBrand = findViewById(R.id.editTxtCarBrandu);
         editTxtCarModel = findViewById(R.id.editTxtCarModelu);
         editTxtCarYear = findViewById(R.id.editTxtCarYearu);
-        editTxtCarKilometers = findViewById(R.id.editTxtCarKilometersu);
+        editTxtCarKilometers = findViewById(R.id.editTxtChassis);
         btnInsertCar = findViewById(R.id.btnInsertCar);
 
     }
@@ -33,9 +34,11 @@ public class AddCarActivity extends AppCompatActivity {
         String carBrand = editTxtCarBrand.getText().toString();
         String carModel = editTxtCarModel.getText().toString();
         int carYear = Integer.parseInt(editTxtCarYear.getText().toString());
-        int carKilometers = Integer.parseInt(editTxtCarKilometers.getText().toString());
+        String chassis = editTxtChassis.getText().toString();
+        String license = editTxtLicense.getText().toString();
+        String insurance = editTxtInsurance.getText().toString();
 
-        AutoModel auto = new AutoModel(carBrand, carModel, carYear);
+        AutoModel auto = new AutoModel(carBrand, carModel, carYear, chassis, license, insurance);
 
         Log.d("Auto Info: ", auto.toString());
 

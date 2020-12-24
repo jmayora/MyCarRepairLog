@@ -19,11 +19,10 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
     EditText edtTextDetail, edtTextDate, edtTextKilometers;
     TextView textAuto;
 
-    int ID = 1, kilometers1= 0, kilometer2 = 0;
+    int ID = 1, kilometers= 0;
     String detail = "";
-    String date1 = "";
+    String date = "";
     String auto = "";
-    String date2 = "";
 
 
 
@@ -65,18 +64,24 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
 
     public void insertLogRecord(View view){
         detail = edtTextDetail.getText().toString();
-        date1 = edtTextDate.getText().toString();
-        kilometers1 = Integer.parseInt(edtTextKilometers.getText().toString());
+        date = edtTextDate.getText().toString();
+        kilometers = Integer.parseInt(edtTextKilometers.getText().toString());
 
-        Toast.makeText(getApplicationContext(), "Date: " + date1 + " , Kilometers: " + kilometers1 + " , Details: " + detail, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Date: " + date + " , Kilometers: " + kilometers + " , Details: " + detail, Toast.LENGTH_SHORT).show();
 
         MyDBHelper myDBHelper = new MyDBHelper(this);
-        LogRecordModel logRecordModel = new LogRecordModel(ID, kilometers1, kilometer2, detail, date1, date2);
+        LogRecordModel logRecordModel = new LogRecordModel(ID, date, kilometers, detail);
         boolean success = myDBHelper.addLogRecord(logRecordModel);
         if (success) {
             Toast.makeText(getApplicationContext(), "Inserted log record", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplicationContext(), "Insert failed", Toast.LENGTH_LONG).show();
+        }
+        success = myDBHelper.updateAutoMaintenaceData(logRecordModel);
+        if (success) {
+            Toast.makeText(getApplicationContext(), "Updated car data", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Update failed", Toast.LENGTH_LONG).show();
         }
     }
 
