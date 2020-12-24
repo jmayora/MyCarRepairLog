@@ -4,6 +4,9 @@
     <string name="btnAddCar">Add Car</string>
     <string name="btnListCars">List Cars</string>
     <string name="txtAuto">Auto</string>
+    <string name="txtViewChassis">Car Chassis</string>
+    <string name="txtViewLicense">Car License</string>
+    <string name="txtViewInsurance">Car Insurance</string>
     <string name="editTextKilometers">Kilometers</string>
     <string name="editTextDate">Date</string>
     <string name="txtTitle">Log Record</string>

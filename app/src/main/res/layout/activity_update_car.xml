@@ -10,29 +10,28 @@
         android:id="@+id/txtViewID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/txtViewID"
         app:layout_constraintBottom_toTopOf="@+id/editTxtCarBrandu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtViewID2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/txtviewRecordId"
         app:layout_constraintBottom_toTopOf="@+id/editTxtCarBrandu"
-        app:layout_constraintStart_toEndOf="@+id/txtViewID"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/txtViewID" />
 
     <EditText
         android:id="@+id/editTxtCarBrandu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="100dp"
+        android:autofillHints="true"
         android:ems="10"
         android:hint="@string/editTxtCarBrand"
         android:inputType="text"
@@ -46,6 +45,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:autofillHints="true"
         android:hint="@string/editTxtCarModel"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +58,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:autofillHints="true"
         android:hint="@string/editTxtCarYear"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,22 +70,33 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:autoText="false"
+        android:autofillHints="true"
         android:ems="10"
         android:hint="@string/editTxtCarKilometers"
         android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTxtCarYearu" />
 
-    <Button
-        android:id="@+id/btnUpdateCar"
+    <ImageButton
+        android:id="@+id/ibtnUpdateCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnUpdateCar"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="@string/btnUpdateCar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtCarKilometersu" />
+        app:srcCompat="@drawable/ic_baseline_save_alt_24" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/editRecordTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

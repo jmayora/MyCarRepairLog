@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 public class MyDBHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "AutosDB";
@@ -43,7 +45,8 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
     String createTableStatement1 = "CREATE TABLE " + AUTO_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_BRAND + " TEXT, " + COLUMN_MODEL + " TEXT, " + COLUMN_YEAR + " INT, " + COLUMN_CHASSIS + " TEXT, "+
-            COLUMN_LICENSE + " TEXT, " + COLUMN_INSURANCE + " TEXT)";
+            COLUMN_LICENSE + " TEXT, " + COLUMN_INSURANCE + " TEXT, " +
+            COLUMN_LOG_DATE1 + " TEXT, " + COLUMN_LOG_KILOMETERS1 + " INT)";
 
     String createTableStatement2 = "CREATE TABLE " + LOG_TABLE + " (" + COLUMN_ID + " INTEGER, " + COLUMN_LOG_DATE1 + " TEXT, " +
             COLUMN_LOG_DATE2 + " TEXT, " + COLUMN_LOG_DETAIL + " TEXT, " + COLUMN_LOG_KILOMETERS1 + " INT, " +
@@ -77,8 +80,25 @@ public class MyDBHelper extends SQLiteOpenHelper {
             db.close();
             return true;
         }
+    }
 
+    public boolean updateAutoRecord(AutoModel autoModel){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
 
+        cv.put(COLUMN_BRAND, autoModel.getBrand());
+        cv.put(COLUMN_MODEL, autoModel.getModel());
+        cv.put(COLUMN_YEAR, autoModel.getYear());
+        String where = "COLUMN_ID = ?";
+
+        long result = db.update(AUTO_TABLE, cv, where, new String[]{valueOf(autoModel.getID())});
+        if (result == -1) {
+            db.close();
+            return false;
+        } else {
+            db.close();
+            return true;
+        }
     }
 
     public boolean addLogRecord(LogRecordModel logRecordModel){
@@ -105,8 +125,6 @@ public class MyDBHelper extends SQLiteOpenHelper {
     }
 
     public boolean deleteOne(int autoID){
-
-
         return true;
     }
 
