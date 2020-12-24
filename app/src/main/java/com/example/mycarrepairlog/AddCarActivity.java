@@ -23,9 +23,9 @@ public class AddCarActivity extends AppCompatActivity {
         editTxtCarBrand = findViewById(R.id.editTxtCarBrandu);
         editTxtCarModel = findViewById(R.id.editTxtCarModelu);
         editTxtCarYear = findViewById(R.id.editTxtCarYearu);
-        editTxtChassis = findViewById(R.id.editTxtChassis);
-        editTxtLicense = findViewById(R.id.editTxtLicense);
-        editTxtInsurance = findViewById(R.id.editTxtInsurance);
+        editTxtChassis = findViewById(R.id.editTxtChassisu);
+        editTxtLicense = findViewById(R.id.editTxtLicenseu);
+        editTxtInsurance = findViewById(R.id.editTxtInsuranceu);
         btnInsertCar = findViewById(R.id.btnInsertCar);
     }
 

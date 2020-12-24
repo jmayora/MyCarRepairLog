@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTxtCarModelu" />
 
     <EditText
-        android:id="@+id/editTxtChassis"
+        android:id="@+id/editTxtChassisu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -113,7 +113,7 @@
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtChassis" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtChassisu" />
 
     <EditText
         android:id="@+id/editTxtInsurance"

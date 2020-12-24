@@ -2,7 +2,6 @@ package com.example.mycarrepairlog;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -34,7 +32,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear;
+        private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear, txtViewChassis,
+        txtViewLicense, txtViewInsurance;
         private ImageView ivEdit, ivAddLog;
 
         public ViewHolder(View v) {
@@ -46,12 +45,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             txtViewBrand = (TextView) v.findViewById(R.id.txtViewBrand);
             txtViewModel = (TextView) v.findViewById(R.id.txtViewModel);
             txtViewYear  = (TextView) v.findViewById(R.id.txtViewYear);
+            txtViewChassis = (TextView) v.findViewById(R.id.txtViewChassis);
+            txtViewLicense = (TextView) v.findViewById(R.id.editTxtLicense);
+            txtViewInsurance = (TextView) v.findViewById(R.id.txtViewInsurance);
         }
 
         public TextView getTxtViewRecordID() { return txtViewRecordID; }
         public TextView getTxtViewBrand() { return txtViewBrand; }
         public TextView getTxtViewModel() { return txtViewModel; }
         public TextView getTxtViewYear() { return txtViewYear; }
+        public TextView getTxtViewChassis() { return txtViewChassis; }
+        public TextView getTxtViewLicense() { return txtViewLicense; }
+        public TextView getTxtViewInsurance() { return txtViewInsurance; }
+
     }
 
     @NonNull
@@ -72,6 +78,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.getTxtViewBrand().setText(allAutosList.get(position).getBrand());
         viewHolder.getTxtViewModel().setText(allAutosList.get(position).getModel());
         viewHolder.getTxtViewYear().setText(String.valueOf(allAutosList.get(position).getYear()));
+        viewHolder.getTxtViewChassis().setText(allAutosList.get(position).getChassis());
+        viewHolder.getTxtViewLicense().setText(allAutosList.get(position).getLicense());
+        viewHolder.getTxtViewInsurance().setText(allAutosList.get(position).getInsurance());
 
         viewHolder.ivEdit.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -82,14 +91,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 String autoBrand = (String) viewHolder.getTxtViewBrand().getText();
                 String autoModel = (String) viewHolder.getTxtViewModel().getText();
                 int autoYear = Integer.parseInt((String) viewHolder.getTxtViewYear().getText());
+                String chassis = (String) viewHolder.getTxtViewChassis().getText();
+                String license = (String) viewHolder.getTxtViewLicense().getText();
+                String insurance = (String) viewHolder.getTxtViewInsurance().getText();
 
                 Toast.makeText(view.getContext(), "Hello " + recordID + " , " +
-                        autoBrand + " , " + autoModel + " , " + autoYear, Toast.LENGTH_SHORT).show();
+                        autoBrand + " , " + autoModel + " , " + autoYear +
+                        " , " + chassis + " , " + license + " , " + insurance, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(context, UpdateCarActivity.class);
                 intent.putExtra("autoBrand", autoBrand );
                 intent.putExtra("autoModel", autoModel);
                 intent.putExtra("autoYear", autoYear);
+                intent.putExtra("chasis", chassis);
+                intent.putExtra("license", license);
+                intent.putExtra("insurance", insurance);
                 intent.putExtra("ID", recordID);
                 context.startActivity(intent);
             }
