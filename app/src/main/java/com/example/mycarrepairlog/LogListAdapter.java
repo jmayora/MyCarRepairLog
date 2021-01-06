@@ -58,6 +58,7 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder( ViewHolder viewHolder, int position) {
+        int auto_ID = allLogRecordList.get(position).getID();
         viewHolder.getTxtViewDate().setText(allLogRecordList.get(position).getDate());
         viewHolder.getTxtViewKilometers().setText(String.valueOf(allLogRecordList.get(position).getKilometers()));
         viewHolder.getTxtViewDetail().setText(allLogRecordList.get(position).getDetail());
@@ -70,6 +71,7 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
                 String detail = viewHolder.txtViewDetail.getText().toString();
                 Context context = view.getContext();
                 Intent intent = new Intent(context, EditLogRecordActivity.class);
+                intent.putExtra("ID", auto_ID);
                 intent.putExtra("date", date);
                 intent.putExtra("kilometers", kilometers);
                 intent.putExtra("detail", detail);

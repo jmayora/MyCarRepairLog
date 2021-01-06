@@ -129,12 +129,34 @@ public class MyDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean updateLogRecord(LogRecordModel logRecordModel){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_LOG_DETAIL, logRecordModel.getDetail());
+        cv.put(COLUMN_LOG_DATE, logRecordModel.getDate());
+        cv.put(COLUMN_LOG_KILOMETERS, logRecordModel.getKilometers());
+
+        String where = "COLUMN_ID = ?";
+
+        long result = db.update(LOG_TABLE, cv, where, new String[]{valueOf(logRecordModel.getID())});
+        if (result == -1) {
+            db.close();
+            return false;
+        } else {
+            db.close();
+            return true;
+        }
+
+    }
+
     public boolean updateAutoMaintenaceData(LogRecordModel logRecordModel){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_LAST_MAINTENANCE_DATE, logRecordModel.getDate());
         cv.put(COLUMN_LAST_KILOMETERS, logRecordModel.getKilometers());
+
 
         String where = "COLUMN_ID = ?";
 
