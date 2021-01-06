@@ -35,7 +35,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView txtViewRecordID, txtViewBrand, txtViewModel, txtViewYear, txtViewChassis,
-        txtViewLicense, txtViewInsurance, txtViewLastDate, txtViewLastKilometers;
+        txtViewLicense, txtViewInsurance, txtViewLastDate, txtViewLastKilometers, txtViewNextDate,
+        txtViewNextKilometers;
         private ImageView ivEdit, ivAddLog;
 
         public ViewHolder(View v) {
@@ -52,6 +53,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             txtViewInsurance = (TextView) v.findViewById(R.id.txtViewInsurance);
             txtViewLastDate = (TextView) v.findViewById(R.id.txtViewLastDate);
             txtViewLastKilometers = (TextView) v.findViewById(R.id.txtViewLastKilometers);
+            txtViewNextDate = (TextView) v.findViewById(R.id.txtViewNextDate);
+            txtViewNextKilometers = (TextView) v.findViewById(R.id.txtViewNextKilometers);
 
         }
 
@@ -64,6 +67,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView getTxtViewInsurance() { return txtViewInsurance; }
         public TextView getTxtViewLastDate() { return txtViewLastDate; }
         public TextView getTxtViewLastKilometers() { return txtViewLastKilometers; }
+        public TextView getTxtViewNextDate() { return txtViewNextDate; }
+        public TextView getTxtViewNextKilometers() { return txtViewNextKilometers; }
 
     }
 
@@ -89,7 +94,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         viewHolder.getTxtViewLicense().setText(allAutosList.get(position).getLicense());
         viewHolder.getTxtViewInsurance().setText(allAutosList.get(position).getInsurance());
         viewHolder.getTxtViewLastDate().setText(allAutosList.get(position).getLast_maintenance_date());
+        viewHolder.getTxtViewNextDate().setText(getNext_maintenance_date(allAutosList.get(position).getLast_maintenance_date()));
         viewHolder.getTxtViewLastKilometers().setText(String.valueOf(allAutosList.get(position).getLast_kilometers()));
+        viewHolder.getTxtViewNextKilometers().setText("Next Kilometers " + String.valueOf(getNext_kilometers(allAutosList.get(position).getLast_kilometers())));
+
 
         viewHolder.ivEdit.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -147,5 +155,40 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return allAutosList.size();
+    }
+
+    public String getNext_maintenance_date(String last_maintenance_date){
+        if(last_maintenance_date == null){
+            return "Next Date";
+        } else {
+            String last_date[] = last_maintenance_date.split("/");
+            int last_date1[] = new int[3];
+            last_date1[0] = Integer.parseInt(last_date[0]);
+            last_date1[1] = Integer.parseInt(last_date[1]);
+            last_date1[2] = Integer.parseInt(last_date[2]);
+
+            if (last_date1[1] == 12) {
+                last_date1[1] = 3;
+                last_date1[2] = last_date1[2] + 1;
+            } else if (last_date1[1] == 11) {
+                last_date1[1] = 2;
+                last_date1[2] = last_date1[2] + 1;
+            } else if (last_date1[1] == 10) {
+                last_date1[1] = 1;
+                last_date1[2] = last_date1[2] + 1;
+            } else {
+                last_date1[1] = +3;
+            }
+
+            return ("Next Date " + last_date[0] + "/" + last_date1[1] + "/" + last_date1[2]);
+        }
+    }
+
+    public int getNext_kilometers(int last_kilometers){
+        if(last_kilometers == 0){
+            return 0;
+        }else {
+            return last_kilometers + 5000;
+        }
     }
 }

@@ -47,9 +47,16 @@ public class EditLogRecordActivity extends AppCompatActivity {
                 boolean success = myDBHelper.updateLogRecord(logRecordModel);
 
                 if (success) {
-                    Toast.makeText(getApplicationContext(), "Updated " , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Log Record Updated " , Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Update failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Log Record Update failed", Toast.LENGTH_LONG).show();
+                }
+
+                success = myDBHelper.updateAutoMaintenaceData(logRecordModel);
+                if (success) {
+                    Toast.makeText(getApplicationContext(), "Auto Updated " , Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Auto Update failed", Toast.LENGTH_LONG).show();
                 }
             }
         });

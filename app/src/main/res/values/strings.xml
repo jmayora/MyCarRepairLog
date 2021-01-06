@@ -19,6 +19,8 @@
     <string name="editTxtCarYear">Car Year</string>
     <string name="editTxtLastKilometers">Last Kilometers</string>
     <string name="editTxtLastMaintenanceDate">Last Date</string>
+    <string name="txtViewNextDate">Next Date</string>
+    <string name="txtViewNextKilometers">Next Kilometers</string>
     <string name="listRecords">Records List</string>
     <string name="btnAddRecord">Add Record</string>
     <string name="btnInsertCar">Insert</string>

@@ -9,27 +9,28 @@
     <TextView
         android:id="@+id/txtViewBrand"
         android:layout_width="wrap_content"
-        android:layout_height="23dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:hint="@string/editTxtCarBrand"
         android:paddingLeft="10sp"
         android:paddingRight="10sp"
         android:textAlignment="center"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtViewYear"
         android:layout_width="wrap_content"
-        android:layout_height="23dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:hint="@string/editTxtCarYear"
         android:paddingLeft="10sp"
         android:paddingRight="10sp"
         android:textAlignment="center"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtViewModel"
@@ -38,12 +39,13 @@
     <TextView
         android:id="@+id/txtViewModel"
         android:layout_width="wrap_content"
-        android:layout_height="23dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:hint="@string/editTxtCarModel"
         android:paddingLeft="10sp"
         android:paddingRight="10sp"
         android:textAlignment="center"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/txtViewBrand"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,7 +62,7 @@
 
     <TextView
         android:id="@+id/txtViewRecordID"
-        android:layout_width="40sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/txtviewRecordId"
@@ -85,14 +87,12 @@
         android:id="@+id/ivEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
         android:background="#FFFFFF"
         android:contentDescription="@string/ivEdit"
-        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAddLog"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivAddLog"
         app:srcCompat="@drawable/ic_create_24px" />
 
     <ImageView
@@ -116,6 +116,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:text="@string/txtViewChassis"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@id/txtViewModel"
@@ -138,6 +139,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:text="@string/txtViewChassis"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewBrand" />
 
@@ -158,6 +160,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:text="@string/txtViewInsurance"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView9" />
 
@@ -168,6 +171,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:text="@string/txtViewInsurance"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/txtViewLicense" />
 
@@ -218,6 +222,28 @@
         app:layout_constraintBottom_toTopOf="@id/divider2"
         app:layout_constraintStart_toEndOf="@id/textView12"
         app:layout_constraintTop_toBottomOf="@id/txtViewLastDate" />
+
+    <TextView
+        android:id="@+id/txtViewNextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/txtViewNextDate"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtViewLastDate"
+        app:layout_constraintStart_toEndOf="@+id/txtViewLastDate"
+        app:layout_constraintTop_toTopOf="@+id/txtViewLastDate" />
+
+    <TextView
+        android:id="@+id/txtViewNextKilometers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/txtViewNextKilometers"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtViewLastKilometers"
+        app:layout_constraintStart_toEndOf="@+id/txtViewLastKilometers"
+        app:layout_constraintTop_toTopOf="@+id/txtViewLastKilometers" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

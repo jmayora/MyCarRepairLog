@@ -41,6 +41,7 @@ public class AutoModel {
         this.insurance = insurance;
         this.last_maintenance_date = last_maintenance_date;
         this.last_kilometers = last_kilometers;
+
     }
 
     public int getID() {
@@ -114,6 +115,8 @@ public class AutoModel {
     public void setLast_kilometers(int last_kilometers) {
         this.last_kilometers = last_kilometers;
     }
+
+
 
     @Override
     public String toString() {
