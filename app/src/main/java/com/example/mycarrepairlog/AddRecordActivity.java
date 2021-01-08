@@ -77,7 +77,7 @@ public class AddRecordActivity extends AppCompatActivity implements DatePickerDi
         } else {
             Toast.makeText(getApplicationContext(), "Insert failed", Toast.LENGTH_LONG).show();
         }
-        success = myDBHelper.updateAutoMaintenaceData(logRecordModel);
+        success = myDBHelper.updateAutoMaintenanceData(logRecordModel);
         if (success) {
             Toast.makeText(getApplicationContext(), "Updated car data", Toast.LENGTH_LONG).show();
         } else {
