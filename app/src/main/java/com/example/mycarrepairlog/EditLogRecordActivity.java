@@ -52,7 +52,7 @@ public class EditLogRecordActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Log Record Update failed", Toast.LENGTH_LONG).show();
                 }
 
-                success = myDBHelper.updateAutoMaintenaceData(logRecordModel);
+                success = myDBHelper.updateAutoMaintenanceData(logRecordModel);
                 if (success) {
                     Toast.makeText(getApplicationContext(), "Auto Updated " , Toast.LENGTH_LONG).show();
                 } else {

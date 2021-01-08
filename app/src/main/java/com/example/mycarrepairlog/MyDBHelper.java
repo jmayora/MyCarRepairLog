@@ -165,7 +165,7 @@ public class MyDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean updateAutoMaintenaceData(LogRecordModel logRecordModel){
+    public boolean updateAutoMaintenanceData(LogRecordModel logRecordModel){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
