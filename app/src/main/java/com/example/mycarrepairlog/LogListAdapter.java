@@ -89,6 +89,8 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
             public void onClick(View view) {
                 MyDBHelper myDBHelper = new MyDBHelper(view.getContext());
                 boolean success = myDBHelper.deleteLogRecord(auto_ID, allLogRecordList.get(position).getDate());
+                setAllLogRecordList(myDBHelper.getAllLogRecords(auto_ID));
+                notifyItemRemoved(position);
                 if (success) {
                     Toast.makeText(view.getContext(), "Log Record Deleted " , Toast.LENGTH_LONG).show();
                 } else {
