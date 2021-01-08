@@ -91,4 +91,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewDate" />
 
+    <ImageButton
+        android:id="@+id/ibtnDeleteRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/ibtnEditRecord"
+        app:layout_constraintEnd_toStartOf="@+id/ibtnEditRecord"
+        app:layout_constraintTop_toTopOf="@+id/ibtnEditRecord"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

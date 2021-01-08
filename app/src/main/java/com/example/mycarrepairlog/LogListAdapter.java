@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,9 +29,10 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
     public List<LogRecordModel> getAllLogRecordList() {
         return allLogRecordList;
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView txtViewDate, txtViewKilometers, txtViewDetail;
-        private final ImageButton ibtnEditRecord;
+        private final ImageButton ibtnEditRecord, ibtnDeleteRecord;
 
         public ViewHolder( View v) {
             super(v);
@@ -38,12 +40,14 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
             txtViewKilometers = (TextView) v.findViewById(R.id.txtViewKilometers);
             txtViewDetail = (TextView) v.findViewById(R.id.txtViewDetail);
             ibtnEditRecord =  v.findViewById(R.id.ibtnEditRecord);
+            ibtnDeleteRecord = v.findViewById(R.id.ibtnDeleteRecord);
         }
 
         public TextView getTxtViewDate() { return txtViewDate; }
         public TextView getTxtViewKilometers() { return txtViewKilometers; }
         public TextView getTxtViewDetail() {return txtViewDetail;}
         public ImageButton getIbtnEditRecord() {return ibtnEditRecord;}
+        public ImageButton getIbtnDeleteRecord() {return ibtnDeleteRecord;}
     }
     @NonNull
     @Override
@@ -72,11 +76,24 @@ public class LogListAdapter extends RecyclerView.Adapter<LogListAdapter.ViewHold
                 Context context = view.getContext();
                 Intent intent = new Intent(context, EditLogRecordActivity.class);
                 intent.putExtra("ID", auto_ID);
-                intent.putExtra("date", date);
-                intent.putExtra("kilometers", kilometers);
-                intent.putExtra("detail", detail);
+                intent.putExtra("date", allLogRecordList.get(position).getDate());
+                intent.putExtra("kilometers", String.valueOf(allLogRecordList.get(position).getKilometers()));
+                intent.putExtra("detail", allLogRecordList.get(position).getDetail());
                 context.startActivity(intent);
 
+            }
+        });
+
+        viewHolder.getIbtnDeleteRecord().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyDBHelper myDBHelper = new MyDBHelper(view.getContext());
+                boolean success = myDBHelper.deleteLogRecord(auto_ID, allLogRecordList.get(position).getDate());
+                if (success) {
+                    Toast.makeText(view.getContext(), "Log Record Deleted " , Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(view.getContext(), "Log Record Delete failed", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

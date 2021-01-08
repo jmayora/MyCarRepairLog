@@ -65,6 +65,4 @@ public class RecordListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
 }

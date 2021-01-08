@@ -129,6 +129,21 @@ public class MyDBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean deleteLogRecord(int ID, String date) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String where = "COLUMN_ID = ? AND COLUMN_LOG_DATE = ?";
+
+        long result = db.delete(LOG_TABLE, where, new String[]{valueOf(ID), date});
+        if (result == -1) {
+            db.close();
+            return false;
+        } else {
+            db.close();
+            return true;
+        }
+    }
+
     public boolean updateLogRecord(LogRecordModel logRecordModel){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
