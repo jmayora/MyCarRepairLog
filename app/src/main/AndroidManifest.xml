@@ -10,7 +10,8 @@
         android:theme="@style/Theme.MyCarRepairLog">
         <activity android:name=".EditLogRecordActivity"></activity>
         <activity android:name=".UpdateCarActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:exported="true" android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
