@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.mycarrepairlog"
@@ -26,6 +26,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.example.mycarrepairlog'
+    buildToolsVersion '33.0.1'
 }
 
 dependencies {
